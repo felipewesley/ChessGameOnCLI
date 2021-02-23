@@ -1,4 +1,5 @@
-﻿using ChessGame.chessboard;
+﻿using ChessGame.chess;
+using ChessGame.chessboard;
 using ChessGame.chessboard.chess.pieces;
 using ChessGame.chessboard.exceptions;
 using System;
@@ -9,6 +10,18 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
+            if (true)
+            {
+
+                ChessPosition p = new ChessPosition('c', 7);
+
+                Console.WriteLine(p);
+                Console.WriteLine(p.ToPosition());
+
+            } else
+            {
+
+            
             try
             {
                 Chessboard chessboard = new Chessboard(8, 8);
@@ -24,7 +37,7 @@ namespace ChessGame
             {
                 Console.WriteLine(e.Message);
             }
-            
+            }
 
             // Console.WriteLine("Hello world!");
         }
