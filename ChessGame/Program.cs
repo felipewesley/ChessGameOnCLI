@@ -1,5 +1,6 @@
 ﻿using ChessGame.chessboard;
 using ChessGame.chessboard.chess.pieces;
+using ChessGame.chessboard.exceptions;
 using System;
 
 namespace ChessGame
@@ -8,16 +9,22 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
+            try
+            {
+                Chessboard chessboard = new Chessboard(8, 8);
 
-            Chessboard chessboard = new Chessboard(8, 8);
+                chessboard.AddPiece(new King(chessboard, Color.Black), new Position(0, 0));
+                chessboard.AddPiece(new Tower(chessboard, Color.Black), new Position(1, 9));
+                chessboard.AddPiece(new King(chessboard, Color.White), new Position(0, 1));
 
-            chessboard.AddPiece(new King(chessboard, Color.Black), new Position(0, 0));
-            chessboard.AddPiece(new Tower(chessboard, Color.Black), new Position(1, 3));
-            chessboard.AddPiece(new King(chessboard, Color.White), new Position(2, 4));
+                View.ShowChessboard(chessboard);
 
-            View.ShowChessboard(chessboard);
-
-            Console.ReadLine();
+                Console.ReadLine();
+            } catch (ChessboardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
 
             // Console.WriteLine("Hello world!");
         }
