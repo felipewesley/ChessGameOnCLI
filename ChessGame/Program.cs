@@ -1,4 +1,5 @@
 ﻿using ChessGame.chessboard;
+using ChessGame.chessboard.chess.pieces;
 using System;
 
 namespace ChessGame
@@ -9,6 +10,10 @@ namespace ChessGame
         {
 
             Chessboard chessboard = new Chessboard(8, 8);
+
+            chessboard.AddPiece(new King(chessboard, Color.Black), new Position(0, 0));
+            chessboard.AddPiece(new Tower(chessboard, Color.Black), new Position(1, 3));
+            chessboard.AddPiece(new King(chessboard, Color.White), new Position(2, 4));
 
             View.ShowChessboard(chessboard);
 

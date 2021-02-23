@@ -19,5 +19,11 @@ namespace ChessGame.chessboard
         {
             return Pieces[position.Row, position.Column];
         }
+
+        public void AddPiece(Piece piece, Position position)
+        {
+            Pieces[position.Row, position.Column] = piece;
+            piece.Position = position;
+        }
     }
 }
