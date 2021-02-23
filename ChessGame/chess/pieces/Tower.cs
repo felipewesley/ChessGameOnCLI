@@ -16,7 +16,7 @@ namespace ChessGame.chessboard.chess.pieces
             return PieceLabel.ToString();
         }
 
-        private bool CanMove(Position position)
+        protected override bool CanMoveSelf(Position position)
         {
             Piece piece = Chessboard.GetPiece(position);
             return piece == null || piece.Color != Color;
@@ -30,7 +30,7 @@ namespace ChessGame.chessboard.chess.pieces
 
             // Acima
             position.SetPosition(Position.Row - 1, Position.Column);
-            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            while (Chessboard.IsValidPosition(position) && CanMoveSelf(position))
             {
                 availableMovesArray[position.Row, position.Column] = true;
                 if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)
@@ -41,7 +41,7 @@ namespace ChessGame.chessboard.chess.pieces
 
             // Abaixo
             position.SetPosition(Position.Row + 1, Position.Column);
-            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            while (Chessboard.IsValidPosition(position) && CanMoveSelf(position))
             {
                 availableMovesArray[position.Row, position.Column] = true;
                 if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)
@@ -52,7 +52,7 @@ namespace ChessGame.chessboard.chess.pieces
 
             // Direita
             position.SetPosition(Position.Row, Position.Column + 1);
-            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            while (Chessboard.IsValidPosition(position) && CanMoveSelf(position))
             {
                 availableMovesArray[position.Row, position.Column] = true;
                 if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)
@@ -63,7 +63,7 @@ namespace ChessGame.chessboard.chess.pieces
 
             // Esquerda
             position.SetPosition(Position.Row, Position.Column - 1);
-            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            while (Chessboard.IsValidPosition(position) && CanMoveSelf(position))
             {
                 availableMovesArray[position.Row, position.Column] = true;
                 if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)

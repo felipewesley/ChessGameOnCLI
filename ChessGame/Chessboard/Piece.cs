@@ -22,6 +22,26 @@ namespace ChessGame.chessboard
             MoveCount++;
         }
 
+        public bool ExistsAvailableMoves()
+        {
+            bool[,] availableMoves = AvailableMoves();
+            for (int i = 0; i < Chessboard.Rows; i++)
+            {
+                for (int j = 0; j < Chessboard.Columns; j++)
+                {
+                    if (availableMoves[i, j]) return true;
+                }
+            }
+            return false;
+        }
+
+        protected abstract bool CanMoveSelf(Position position);
+
+        public bool CanMoveTo(Position position)
+        {
+            return AvailableMoves()[position.Row, position.Column];
+        }
+
         public abstract bool[,] AvailableMoves();
     }
 }

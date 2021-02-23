@@ -1,5 +1,6 @@
 ﻿using ChessGame.chessboard;
 using ChessGame.chessboard.chess.pieces;
+using ChessGame.chessboard.exceptions;
 using System;
 
 namespace ChessGame.chess
@@ -7,8 +8,8 @@ namespace ChessGame.chess
     class ChessMatch
     {
         public Chessboard Chessboard { get; private set; }
-        private int Step;
-        private Color CurrentPlayer;
+        public int Step { get; private set; }
+        public Color CurrentPlayer { get; private set; }
         public bool Closed;
 
         public ChessMatch()
@@ -20,13 +21,49 @@ namespace ChessGame.chess
             StartPiecesOfMatch();
         }
 
-        public void DoMove(Position sourcePosition, Position targetPosition)
+        private void DoMove(Position sourcePosition, Position targetPosition)
         {
             Piece sourcePiece = Chessboard.RemovePiece(sourcePosition);
             sourcePiece.AddMoveCount();
             Piece capturedPiece = Chessboard.RemovePiece(targetPosition);
 
             Chessboard.AddPiece(sourcePiece, targetPosition);
+        }
+
+        public void PlayMove(Position sourcePosition, Position targetPosition)
+        {
+            DoMove(sourcePosition, targetPosition);
+            Step++;
+            ChangePlayer();
+        }
+
+        public void ToValidateSourcePosition(Position position)
+        {
+            if (Chessboard.GetPiece(position) == null)
+            {
+                throw new ChessboardException("Not exists pieces in selected position");
+            }
+            if (CurrentPlayer != Chessboard.GetPiece(position).Color)
+            {
+                throw new ChessboardException("The selected piece isn't your!");
+            }
+            if (!Chessboard.GetPiece(position).ExistsAvailableMoves())
+            {
+                throw new ChessboardException("Not exists available moves to selected piece!");
+            }
+        }
+
+        public void ToValidateTargetPosition(Position source, Position target)
+        {
+            if (!Chessboard.GetPiece(source).CanMoveTo(target))
+            {
+                throw new ChessboardException("Invalid target position!");
+            }
+        }
+
+        private void ChangePlayer()
+        {
+            CurrentPlayer = CurrentPlayer == Color.White ? Color.Black : Color.White;
         }
 
         private void StartPiecesOfMatch()

@@ -17,25 +17,42 @@ namespace ChessGame
 
                 while (!chessMatch.Closed)
                 {
-                    Console.Clear();
-                    View.ShowChessboard(chessMatch.Chessboard);
+                    try
+                    {
+                        Console.Clear();
+                        View.ShowChessboard(chessMatch.Chessboard);
 
-                    Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine("Step: " + chessMatch.Step);
+                        Console.WriteLine("Current player: " + chessMatch.CurrentPlayer);
 
-                    Console.Write("Source: ");
-                    Position source = View.ReadPosition().ToPosition();
+                        Console.WriteLine();
 
-                    bool[,] availableMoves = chessMatch.Chessboard.GetPiece(source).AvailableMoves();
+                        Console.Write("Source: ");
+                        Position source = View.ReadPosition().ToPosition();
 
-                    Console.Clear();
-                    View.ShowChessboard(chessMatch.Chessboard, availableMoves);
+                        chessMatch.ToValidateSourcePosition(source);
 
-                    Console.WriteLine();
+                        bool[,] availableMoves = chessMatch.Chessboard.GetPiece(source).AvailableMoves();
 
-                    Console.Write("Target: ");
-                    Position target = View.ReadPosition().ToPosition();
+                        Console.Clear();
+                        View.ShowChessboard(chessMatch.Chessboard, availableMoves);
 
-                    chessMatch.DoMove(source, target);
+                        Console.WriteLine();
+
+                        Console.Write("Target: ");
+                        Position target = View.ReadPosition().ToPosition();
+
+                        chessMatch.ToValidateTargetPosition(source, target);
+
+                        chessMatch.PlayMove(source, target);
+
+                    } catch (ChessboardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+                    
                 }
 
                 
