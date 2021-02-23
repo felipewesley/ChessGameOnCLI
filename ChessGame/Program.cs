@@ -20,11 +20,7 @@ namespace ChessGame
                     try
                     {
                         Console.Clear();
-                        View.ShowChessboard(chessMatch.Chessboard);
-
-                        Console.WriteLine();
-                        Console.WriteLine("Step: " + chessMatch.Step);
-                        Console.WriteLine("Current player: " + chessMatch.CurrentPlayer);
+                        View.ShowMatch(chessMatch);
 
                         Console.WriteLine();
 

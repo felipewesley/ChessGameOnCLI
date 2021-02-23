@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ChessGame.chess;
 using ChessGame.chessboard;
 
@@ -6,6 +7,41 @@ namespace ChessGame
 {
     class View
     {
+        public static void ShowMatch(ChessMatch chessMatch)
+        {
+            ShowChessboard(chessMatch.Chessboard);
+
+            Console.WriteLine();
+
+            ShowCapturedPieces(chessMatch);
+
+            Console.WriteLine();
+
+            Console.WriteLine("Step: " + chessMatch.Step);
+            Console.WriteLine("Current player: " + chessMatch.CurrentPlayer);
+        }
+
+        public static void ShowCapturedPieces(ChessMatch chessMatch)
+        {
+            Console.WriteLine("Captured pieces: ");
+            Console.Write("White: ");
+            ShowCollection(chessMatch.CapturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Black: ");
+            ShowCollection(chessMatch.CapturedPieces(Color.Black));
+        }
+
+        public static void ShowCollection(HashSet<Piece> collection)
+        {
+            Console.Write("[ ");
+            foreach (Piece piece in collection)
+            {
+                View.ShowPiece(piece);
+                // Console.Write(piece + " ");
+            }
+            Console.Write("]");
+        }
+
         public static void ShowChessboard(Chessboard chessboard)
         {
             for (int i = 0; i < chessboard.Rows; i++)
