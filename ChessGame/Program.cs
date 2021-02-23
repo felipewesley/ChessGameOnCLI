@@ -1,4 +1,4 @@
-﻿using ChessGame.Chessboard;
+﻿using ChessGame.chessboard;
 using System;
 
 namespace ChessGame

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChessGame.Chessboard
+namespace ChessGame.chessboard
 {
     enum Color
     {

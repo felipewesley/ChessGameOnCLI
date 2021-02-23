@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace ChessGame.Chessboard
+namespace ChessGame.chessboard
 {
     class Piece
     {
