@@ -6,7 +6,7 @@ namespace ChessGame.chessboard
     {
         public Position Position { get; set; }
         public Color Color { get; protected set; }
-        public int MoveQuant { get; protected set; }
+        public int MoveCount { get; protected set; }
         public Chessboard Chessboard { get; protected set; }
 
         public Piece(Chessboard chessboard, Color color)
@@ -14,9 +14,12 @@ namespace ChessGame.chessboard
             Position = null;
             Color = color;
             Chessboard = chessboard;
-            MoveQuant = 0;
+            MoveCount = 0;
         }
 
-        
+        public void AddMoveCount()
+        {
+            MoveCount++;
+        }
     }
 }

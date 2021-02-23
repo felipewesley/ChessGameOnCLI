@@ -1,4 +1,5 @@
 ﻿using System;
+using ChessGame.chess;
 using ChessGame.chessboard;
 
 namespace ChessGame
@@ -40,6 +41,16 @@ namespace ChessGame
                 Console.ForegroundColor = defaultColor;
             }
             Console.Write(" ");
+        }
+
+        public static ChessPosition ReadPosition()
+        {
+            string read = Console.ReadLine();
+
+            char column = char.Parse(read[0].ToString());
+            int row = int.Parse(read[1].ToString());
+
+            return new ChessPosition(column, row);
         }
     }
 }

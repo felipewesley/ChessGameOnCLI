@@ -13,19 +13,32 @@ namespace ChessGame
 
             try
             {
-                Chessboard chessboard = new Chessboard(8, 8);
+                ChessMatch chessMatch = new ChessMatch();
 
-                chessboard.AddPiece(new King(chessboard, Color.Black), new Position(0, 0));
-                chessboard.AddPiece(new Tower(chessboard, Color.Black), new Position(1, 7));
-                chessboard.AddPiece(new King(chessboard, Color.White), new Position(0, 1));
+                while (!chessMatch.Closed)
+                {
+                    Console.Clear();
+                    View.ShowChessboard(chessMatch.Chessboard);
 
-                View.ShowChessboard(chessboard);
+                    Console.WriteLine();
 
-                Console.ReadLine();
+                    Console.Write("Source: ");
+                    Position source = View.ReadPosition().ToPosition();
+
+                    Console.Write("Target: ");
+                    Position target = View.ReadPosition().ToPosition();
+
+                    chessMatch.DoMove(source, target);
+                }
+
+                
+
             } catch (ChessboardException e)
             {
                 Console.WriteLine(e.Message);
             }
+
+            Console.ReadLine();
 
             // Console.WriteLine("Hello world!");
         }
