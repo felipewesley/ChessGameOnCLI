@@ -14,5 +14,10 @@ namespace ChessGame.chessboard
             Columns = columns;
             Pieces = new Piece[rows, columns];
         }
+
+        public Piece GetPiece(Position position)
+        {
+            return Pieces[position.Row, position.Column];
+        }
     }
 }

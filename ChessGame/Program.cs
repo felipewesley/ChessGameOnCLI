@@ -7,7 +7,14 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello world!");
+
+            Chessboard chessboard = new Chessboard(8, 8);
+
+            View.ShowChessboard(chessboard);
+
+            Console.ReadLine();
+
+            // Console.WriteLine("Hello world!");
         }
     }
 }
