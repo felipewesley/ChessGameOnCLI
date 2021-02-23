@@ -25,6 +25,13 @@ namespace ChessGame
                     Console.Write("Source: ");
                     Position source = View.ReadPosition().ToPosition();
 
+                    bool[,] availableMoves = chessMatch.Chessboard.GetPiece(source).AvailableMoves();
+
+                    Console.Clear();
+                    View.ShowChessboard(chessMatch.Chessboard, availableMoves);
+
+                    Console.WriteLine();
+
                     Console.Write("Target: ");
                     Position target = View.ReadPosition().ToPosition();
 

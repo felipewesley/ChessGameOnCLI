@@ -21,5 +21,7 @@ namespace ChessGame.chessboard
         {
             MoveCount++;
         }
+
+        public abstract bool[,] AvailableMoves();
     }
 }

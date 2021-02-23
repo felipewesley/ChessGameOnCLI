@@ -15,5 +15,64 @@ namespace ChessGame.chessboard.chess.pieces
         {
             return PieceLabel.ToString();
         }
+
+        private bool CanMove(Position position)
+        {
+            Piece piece = Chessboard.GetPiece(position);
+            return piece == null || piece.Color != Color;
+        }
+
+        public override bool[,] AvailableMoves()
+        {
+            bool[,] availableMovesArray = new bool[Chessboard.Rows, Chessboard.Columns];
+
+            Position position = new Position(0, 0);
+
+            // Acima
+            position.SetPosition(Position.Row - 1, Position.Column);
+            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            {
+                availableMovesArray[position.Row, position.Column] = true;
+                if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)
+                    break;
+
+                position.Row -= 1;
+            }
+
+            // Abaixo
+            position.SetPosition(Position.Row + 1, Position.Column);
+            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            {
+                availableMovesArray[position.Row, position.Column] = true;
+                if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)
+                    break;
+
+                position.Row += 1;
+            }
+
+            // Direita
+            position.SetPosition(Position.Row, Position.Column + 1);
+            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            {
+                availableMovesArray[position.Row, position.Column] = true;
+                if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)
+                    break;
+
+                position.Column += 1;
+            }
+
+            // Esquerda
+            position.SetPosition(Position.Row, Position.Column - 1);
+            while (Chessboard.IsValidPosition(position) && CanMove(position))
+            {
+                availableMovesArray[position.Row, position.Column] = true;
+                if (Chessboard.GetPiece(position) != null && Chessboard.GetPiece(position).Color != Color)
+                    break;
+
+                position.Column -= 1;
+            }
+
+            return availableMovesArray;
+        }
     }
 }

@@ -13,6 +13,13 @@ namespace ChessGame.chessboard
             Column = column;
         }
 
+        public void SetPosition(int row, int col)
+        {
+            Row = row;
+            Column = col;
+        }
+
+
         public override string ToString()
         {
             return $"{ Row }, { Column }";
