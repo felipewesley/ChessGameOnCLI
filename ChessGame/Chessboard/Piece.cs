@@ -22,6 +22,11 @@ namespace ChessGame.chessboard
             MoveCount++;
         }
 
+        public void SubtractMoveCount()
+        {
+            MoveCount--;
+        }
+
         public bool ExistsAvailableMoves()
         {
             bool[,] availableMoves = AvailableMoves();

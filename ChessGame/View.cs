@@ -19,6 +19,20 @@ namespace ChessGame
 
             Console.WriteLine("Step: " + chessMatch.Step);
             Console.WriteLine("Current player: " + chessMatch.CurrentPlayer);
+
+            if (chessMatch.InCheck) ShowAlert("### CHECK ###");
+        }
+
+        public static void ShowAlert(string message)
+        {
+            ConsoleColor defaultColor = Console.ForegroundColor;
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            
+            Console.WriteLine();
+            Console.WriteLine(message);
+
+            Console.ForegroundColor = defaultColor;
         }
 
         public static void ShowCapturedPieces(ChessMatch chessMatch)
